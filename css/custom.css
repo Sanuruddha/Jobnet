@@ -43,3 +43,10 @@ h1 a:link, h2 a:link, h3 a:link, h4 a:link, h5 a:link, h6 a:link {
 	text-align: center;
 	}
 	
+#change-form *{
+	padding:5px;
+	
+}
+
+#change-submit-form *{padding:5px;
+margin: auto;}
