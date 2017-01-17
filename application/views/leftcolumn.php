@@ -1,5 +1,4 @@
 <div class="col-sm-3">
-
     <!-- List-Group Panel -->
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -25,6 +24,5 @@
             <p><button class="btn btn-default">Take now!!</button></p>
         </div>
     </div>
-
 </div>
 
