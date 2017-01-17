@@ -10,7 +10,7 @@
         <title>Portal 2</title>
         <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/bootstrap.min.css">
         <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/custom.css">
-
+        <script src="<?php echo base_url('js/jquery-3.1.1.js');?>" type="text/javascript"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

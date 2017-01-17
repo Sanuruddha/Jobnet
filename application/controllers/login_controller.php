@@ -27,7 +27,7 @@ class login_controller extends CI_Controller {
     private function checkLogin($email, $password) {
         $this->load->Model("Login_Model");
         $status = $this->Login_Model->checkLogin($email, $password);
-        if (!$status) {
+        if ($status) {
             $usertype = $status;
             $this->loadViewFor($usertype);
         } else {
@@ -44,6 +44,8 @@ class login_controller extends CI_Controller {
         if ($usertype === '0') {
             $this->load->View("adminpanel.php");
         } else if ($usertype === '1') {
+            $this->load->View("hrhome.php");
+        }else if($usertype === '2'){
             $this->load->View("userhome.php");
         }
     }
