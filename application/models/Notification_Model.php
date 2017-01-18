@@ -9,7 +9,7 @@ class Notification_Model extends CI_Model {
 
     public function get($data) {
 
-        $query = $this->db->query("SELECT * FROM notification_users WHERE mobile={$data["mobile"]} AND password={$data["password"]};");
+        $query = $this->db->query("SELECT * FROM notification_user WHERE mobile='{$data["mobile"]}' AND password='{$data["password"]}';");
 
         return $query;
     }
@@ -27,7 +27,7 @@ class Notification_Model extends CI_Model {
         $this->db->update("notification", $data);
     }
 
-    public function addRecord($mob, $pwd, $fname, $sname, $adr, $cat) {
+    public function addRecord($mob, $pwd, $fname, $sname, $email, $cat) {
         $this->load->database();
         
         
@@ -37,20 +37,11 @@ class Notification_Model extends CI_Model {
             'sname' =>  $sname,
             'password' => $pwd,
             'mobile'=>$mob,
-            'address'=>$adr,
+            'email'=>$email,
             'category'=> $cat
         );
         
         $this->db->insert('notification_user', $data);
-        
-        echo "here";
-        exit;
-
-        $this->load->database();
-        $query = $this->db->prepare('INSERT INTO notification_user (fname,sname,password,mobile,address,category) VALUES(?,?,?,?,?,?})');
-        
-        $query->execute(array($fname, $sname, $pwd, $mob, $adr, $cat));
-
         return $this->db->affected_rows() > 0;
     }
 

@@ -28,7 +28,7 @@
                         <a href="#">Contact</a>
                     </li>
                     <li class="dropdown" style="display:none">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Services <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="about-us">
                             <li><a href="#">Engage</a></li>
                             <li><a href="#">Pontificate</a></li>
@@ -38,12 +38,12 @@
                 </ul>
 
                 <!-- Search -->
-                <form class="navbar-form navbar-right" role="search">
+                <!--<form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
-                </form>
+                </form>-->
 
             </div>
             <!-- /.navbar-collapse -->

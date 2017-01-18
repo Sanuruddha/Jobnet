@@ -17,27 +17,26 @@ class notification_controller extends CI_Controller {
 
         $query = $this->notification_model->get($data);
         if ($query) {
-            foreach ($query->result_array() as $row) {
-                $dat = array(
-                    'first_name' => $row["first_name"],
-                    'second_name' => $row["second_name"],
-                    'address' => $row["address"],
-                    'mobile' => $row["mobile"],
-                    'password' => $row["password"],
-                    'email' => $row["email"],
-                    'skill' => $row["skill"]
-                );
+            $row = $query->row_array();
+            $dat = array(
+                'first_name' => $row["fname"],
+                'second_name' => $row["sname"],
+                'mobile' => $row["mobile"],
+                'password' => $row["password"],
+                'email' => $row["email"],
+                'category' => $row["category"]
+            );
 
-                $this->load->view('editform', $dat);
-            }
+            $this->load->view('editform', $dat);
         } else {
             echo "Enter Valid information";
         }
     }
 
     public function submitedit() {
-        $this->load->helper('url');
-        echo "successful";
+        
+      $this->addNew();
+        
     }
 
     public function addNew() {
@@ -46,24 +45,24 @@ class notification_controller extends CI_Controller {
         $repwd = $this->input->post('repwd', TRUE);
         $fname = $this->input->post('fname', TRUE);
         $sname = $this->input->post('sname', TRUE);
-        $adr = $this->input->post('adr', TRUE);
+        $email = $this->input->post('email', TRUE);
         $mob = $this->input->post('mob', TRUE);
         $cat = $this->input->post('cat', TRUE);
-        if ($this->validateDetails($mob, $pwd, $fname, $sname, $adr, $repwd)) {
-            
-            $status = $this->Notification_Model->addRecord($mob, $pwd, $fname, $sname, $adr, $cat);
-            
+        if ($this->validateDetails($mob, $pwd, $fname, $sname, $email, $repwd)) {
+
+            $status = $this->Notification_Model->addRecord($mob, $pwd, $fname, $sname, $email, $cat);
+
             if ($status) {
                 echo "successful";
-            }
-            else{
+            } else {
                 echo "Oops something went wrong!";
             }
         }
+        return true;
     }
 
-    private function validateDetails($mob, $pwd, $fname, $sname, $adr, $repwd) {
-        
+    private function validateDetails($mob, $pwd, $fname, $sname, $email, $repwd) {
+
         $status2 = preg_match("/^([A-Za-z])+$/", $fname);
         if (!$status2) {
             echo "Invalid first name. Name must not be empty and must contains only letters";
@@ -74,6 +73,13 @@ class notification_controller extends CI_Controller {
             echo "Invalid second name. Name must not be empty and must contains only letters.";
             exit;
         }
+
+        $status6 = filter_var($email, FILTER_VALIDATE_EMAIL);
+        if (!$status6) {
+            echo "Invalid email address.";
+            exit;
+        }
+
         $status4 = (strlen($pwd) > 7);
         if (!$status4) {
             echo "Invalid password. Password must contains atleast 8 characters.";
@@ -89,13 +95,7 @@ class notification_controller extends CI_Controller {
             echo "Invalid mobile number. Mobile number must be a 10 digit number starts with 07";
             exit;
         }
-        
-        $status6 = (strlen($adr) > 0);
-        if (!$status6) {
-            echo "Address must not be empty";
-            exit;
-        }
-        
+
         return true;
     }
 

@@ -54,6 +54,9 @@
                         <input type="text" class="form-control" id="sname" name="sname" placeholder="Second Name">
                     </div>
                     <div class="form-group">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
                         <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">
                     </div>
                     <div class="form-group">
@@ -62,15 +65,13 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="mob" name="mob" placeholder="Mobile">
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="adr" name="adr" placeholder="Address">
-                    </div>
+                    
                     <div style="text-align:center">
                         <div class="form-group">
                             <select name="cat">
-                                <option value='0'>Accounts</option>
-                                <option value='1'>Marketting</option>
-                                <option value='2'>Sales</option>
+                                <option value='acc'>Accounts</option>
+                                <option value='mar'>Marketting</option>
+                                <option value='sal'>Sales</option>
                             </select>
                         </div>
                         <button id="submit" type="button" class="btn btn-default" onclick="return submitNotficaionForm()">I'm in</button><br>
@@ -84,14 +85,14 @@
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
-                                    
+
                                     <div class="modal-body">
                                         <div class="alert alert-success">
                                             You have successfully registered for notifications.
                                         </div>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -103,14 +104,14 @@
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
-                                    
+
                                     <div class="modal-body">
                                         <div id="message" class="alert alert-danger">
                                             Sign up was not successful.
                                         </div>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -119,10 +120,12 @@
                         <script>
                             function showSuccess() {
                                 $('#successModal').modal('show');
+                                
                             }
                             function showFailed(data) {
                                 $("#message").html(data);
                                 $('#failModal').modal('show');
+                                
                             }
                             function submitNotficaionForm() {
                                 $.ajax({
@@ -132,6 +135,8 @@
                                     success: function (data) {
                                         if (data.trim() === "successful") {
                                             showSuccess();
+                                            var form = document.getElementById("notification-form");
+                                            form.reset();
                                         } else {
                                             showFailed(data);
                                         }
@@ -142,7 +147,7 @@
                             }
 
                         </script>
-                        <a style="cursor:pointer" class="btnPrompt">Change Details</a><br>
+                        <a style="cursor:pointer" id="btnPrompt" class="btnPrompt">Change Details</a><br>
                         <a style="cursor:pointer" class="btnPrompt" href="<?php echo base_url() ?>index.php/notification_controller/remove">Disable notifications</a>
 
                     </div>

@@ -24,7 +24,7 @@
 
         <!-- Navigation -->
         <?php include 'navigation.php'; ?>
-        <?php include 'jumbotron.php'; ?>
+        <?php //include 'jumbotron.php'; ?>
 
 
 
